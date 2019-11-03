@@ -21,7 +21,8 @@ public class Main
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         int turnNumber = 1;
-        boolean phase = true;
+        boolean phase = true; //used for determining which phase it is
+        boolean victory = false; //used for ending the battle, is it inefficient? probably
 
         //Player Variables:
         //You can edit these, but don't do something stupid
@@ -31,7 +32,7 @@ public class Main
         //Enemy Variables:
         //Maybe give the enemies a different variable name?
         String name2 = "Enemy";
-        int stats2 [] = {9, 2, 9, 0, 2, 4, 1}; //see EngineNotes.txt for array references
+        int stats2 [] = {9, 2, 6, 0, 2, 4, 1}; //see EngineNotes.txt for array references
 
         //Party Member deceleration:
         PartyMember p1 = new PartyMember(name1, stats1);
@@ -46,6 +47,8 @@ public class Main
         //Main Engine Loop:
         while (true)
         {
+            if (victory) break; else
+
             if (phase)
             {
                 //Player Phase:
@@ -60,6 +63,7 @@ public class Main
                     //Attack:
                     case 1:
                         attack(p1.name, p1.stats, e1.name, e1.stats);
+                        if(e1.stats[0] == 0) victory = true;
                         phase = false; //Changes to enemy phase
                         break;
 
@@ -80,6 +84,7 @@ public class Main
                         System.out.println("Error: Invalid Command");
                         break;
                 }
+
             } else {
                 //Enemy Phase:
                 System.out.println("Enemy Phase");
@@ -88,15 +93,20 @@ public class Main
                 turnNumber++;
                 phase = true; //Changes to player phase
             }
-
         }
+
+        //
     }
 
     //Standard attack method:
     static void attack(String aName, int aStats[], String bName, int bStats[])
     {
+        //Gets the attack and defence stats from a and b
+        int atk = aStats[2];
+        int def = bStats[5];
+
         //Damage Calculations:
-        int damage = aStats[2] -= bStats[5]; //damage calculation = a.atk -b.def.
+        int damage = atk -= def; //horribly inefficent but it works
         if (damage < 0) damage = 0; //prevents damage from being 0.
         bStats[0] -= damage; //changes b.hp based on a's damage
         if (bStats[0] < 0) bStats[0] = 0; //prevents b.hp from being 0.
@@ -104,7 +114,7 @@ public class Main
         //This will be a lot cleaner in the GUI version:
         System.out.println("-----------------------"); //used to seperate battle logs
         System.out.println(aName+" attacks "+bName+"!");
-        System.out.println(aName+" deals "+damage+" damage to "+bName);
+        System.out.println(aName+" deals "+damage+" damage to "+bName+".");
         System.out.println(bName+" has "+bStats[0]+" HP left.");
         System.out.println("-----------------------"); //used to seperate battle logs
     }
