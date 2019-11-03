@@ -1,0 +1,8 @@
+Stats Array:
+0 = HP
+1 = MP
+2 = ATK
+3 = MAG
+4 = SPD
+5 = DEF
+6 = RES
