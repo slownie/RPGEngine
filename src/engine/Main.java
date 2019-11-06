@@ -119,6 +119,5 @@ public class Main
         System.out.println(bName+" has "+bStats[0]+" HP left.");
         System.out.println("-----------------------"); //used to seperate battle logs
     }
-    
 }
 

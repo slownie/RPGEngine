@@ -16,14 +16,29 @@ public class Skill
 		this.type = type;
 	}
 	
-	public void physSkill(String aName, int aStats [], String bName, int bStats[])
+	public void physSkill(String skillName, String aName, int aStats [], String bName, int bStats[])
 	{
 		
 	}
 	
-	public void magSkill(String aName, int aStats [], String bName, int bStats[])
+	public void magSkill(String skillName, String aName, int aStats [], String bName, int bStats[])
 	{
-		
+        //Gets the magic and resistance stats from a and b
+        int mag = aStats[3];
+        int res = bStats[6];
+
+        //Damage Calculations:
+        int damage = mag -= res; //horribly inefficent but it works
+        if (damage < 0) damage = 0; //prevents damage from being 0.
+        bStats[0] -= damage; //changes b.hp based on a's damage
+        if (bStats[0] < 0) bStats[0] = 0; //prevents b.hp from being 0.
+
+        //This will be a lot cleaner in the GUI version:
+        System.out.println("-----------------------"); //used to seperate battle logs
+        System.out.println(aName+" casts "+skillName+" on "+bName+"!");
+        System.out.println(aName+" deals "+damage+" damage to "+bName+".");
+        System.out.println(bName+" has "+bStats[0]+" HP left.");
+        System.out.println("-----------------------"); //used to seperate battle logs
 	}
 	
 	public void healSkill(String aName, int aStats [], String bName, int bStats[])
