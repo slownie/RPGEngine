@@ -2,12 +2,10 @@ package engine;
 
 //Java Imports:
 import java.util.Scanner;
-import java.util.ArrayList;
 
 //Engine Imports:
 import engine.PartyMember;
 import engine.Enemy;
-import engine.Skill;
 
 public class Main
 {
@@ -25,12 +23,6 @@ public class Main
         boolean phase = true; //used for determining which phase it is
         boolean victory = false; //used for ending the battle, is it inefficient? probably
 
-        //Skill declarations:
-        Skill fire = new Skill("Fire", 1);
-        
-        ArrayList<Skill> skillList = new ArrayList<Skill>();
-        skillList.add(fire);
-        
         
         //Player Variables:
         //You can edit these, but don't do something stupid
