@@ -6,3 +6,11 @@ Stats Array:
 4 = SPD
 5 = DEF
 6 = RES
+
+Skill Types:
+0 = Physical Damage (Uses HP, ATK, and DEF stats)
+1 = Magical  Damage (Uses MP, MAG, and RES stats)
+2 = Healing         (Uses MP, and MAG stat)
+3 = Status Ailment  (Will eventually use the SKL and LCK stats)
+4 = Buff            (Will eventually use the SKL and LCK stats)
+5 = Debuff          (Will eventually use the SKL and LCK stats)

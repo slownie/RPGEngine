@@ -2,11 +2,12 @@ package engine;
 
 //Java Imports:
 import java.util.Scanner;
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 //Engine Imports:
 import engine.PartyMember;
 import engine.Enemy;
+import engine.Skill;
 
 public class Main
 {
@@ -24,6 +25,13 @@ public class Main
         boolean phase = true; //used for determining which phase it is
         boolean victory = false; //used for ending the battle, is it inefficient? probably
 
+        //Skill declarations:
+        Skill fire = new Skill("Fire", 1);
+        
+        ArrayList<Skill> skillList = new ArrayList<Skill>();
+        skillList.add(fire);
+        
+        
         //Player Variables:
         //You can edit these, but don't do something stupid
         String name1 = "Player";
@@ -34,16 +42,17 @@ public class Main
         String name2 = "Enemy";
         int stats2 [] = {9, 2, 6, 0, 2, 4, 1}; //see EngineNotes.txt for array references
 
-        //Party Member deceleration:
+        //Party Member declaration:
         PartyMember p1 = new PartyMember(name1, stats1);
 
-        //Enemy deceleration:
+        //Enemy declaration:
         Enemy e1 = new Enemy(name2, stats2);
 
         //Unused for now, will add them when we have multiple party members and enemies:
         //ArrayList<PartyMember> party = new ArrayList<PartyMember>();
         //ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-
+        
+        
         //Main Engine Loop:
         while (true)
         {
@@ -101,7 +110,7 @@ public class Main
     //Standard attack method:
     static void attack(String aName, int aStats[], String bName, int bStats[])
     {
-        //Gets the attack and defence stats from a and b
+        //Gets the attack and defense stats from a and b
         int atk = aStats[2];
         int def = bStats[5];
 
@@ -118,5 +127,6 @@ public class Main
         System.out.println(bName+" has "+bStats[0]+" HP left.");
         System.out.println("-----------------------"); //used to seperate battle logs
     }
+    
 }
 
