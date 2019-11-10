@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GUIMain
+public class GUIMain implements KeyListener
 {
     //Global Variables:
 
@@ -42,12 +42,15 @@ public class GUIMain
 
         //DrawingPanel Setup:
         drPanel = new DrawingPanel();
+        drPanel.addKeyListener(this);
         window.add(drPanel);
 
 
         //Timer Setup:
         int timerSpeed = 120;
         bTimer = new Timer(timerSpeed, new BattleTimerListener());
+        bTimer.setDelay(100);
+        bTimer.start();
 
         window.setVisible(true);
 
@@ -76,12 +79,23 @@ public class GUIMain
     {
         public void actionPerformed(ActionEvent e)
         {
+            readInputs();
             window.repaint();
         }
     }
 
     /** Methods used in this program **/
-    
+    public void readInputs()
+    {
+
+    }
+
+    public void playerPhase()
+    {
+
+    }
+
+    @Override
     public void keyPressed(KeyEvent e)
     {
         if (e.getKeyCode() == KeyEvent.VK_W) W = true;
@@ -92,6 +106,7 @@ public class GUIMain
         if (e.getKeyCode() == KeyEvent.VK_K) K = true;
     }
 
+    @Override
     public void keyReleased(KeyEvent e)
     {
         if (e.getKeyCode() == KeyEvent.VK_W) W = false;
@@ -102,5 +117,6 @@ public class GUIMain
         if (e.getKeyCode() == KeyEvent.VK_K) K = false;
     }
 
+    @Override
     public void keyTyped(KeyEvent e) {}
 }
