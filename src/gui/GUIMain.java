@@ -26,6 +26,10 @@ public class GUIMain implements KeyListener
     //Player Inputs:
     static boolean W, A, S, D, J, K = false;
 
+    //Enemy Variables:
+    static int [] eStats = {20, 10, 4, 1, 2, 3, 1};
+    GUIEnemy e1 = new GUIEnemy("Enemy", eStats, 100, 100, 50, 50);
+
     public static void main (String [] args)
     {
         new GUIMain();
@@ -54,7 +58,6 @@ public class GUIMain implements KeyListener
 
         window.setVisible(true);
 
-        //Main Engine Loop:
     }
 
     /** Classes used in this Program **/
@@ -72,6 +75,8 @@ public class GUIMain implements KeyListener
         {
             super.paintComponent(g);
             this.requestFocus();
+
+            drawHUD(g);
         }
     }
 
@@ -93,6 +98,21 @@ public class GUIMain implements KeyListener
     public void playerPhase()
     {
 
+    }
+
+    //Draws the HUD in the GraphicsPanel:
+    public void drawHUD(Graphics g)
+    {
+        //Top Text Box:
+        Color textBoxColour = new Color(36, 255, 248);
+        g.setColor(textBoxColour);
+        //TODO: Make these work with most screen resolutions
+        g.drawRect(20, 20, 355, 60);
+        g.setColor(Color.WHITE);
+        g.drawString("* This is a test message.", 30, 40);
+        g.drawString("*This is a test message too.", 30, 60);
+
+        e1.drawEnemy(g, e1.x, e1.y, e1.sizeX, e1.sizeY);
     }
 
     @Override
