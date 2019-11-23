@@ -26,6 +26,11 @@ public class GUIMain implements KeyListener
     //Player Inputs:
     static boolean W, A, S, D, J, K = false;
 
+    //Player Varibles:
+    static String pName = "Player";
+    static int [] pStats = {40, 27, 10, 6, 8, 4, 2};
+    GUIPlayer p1 = new GUIPlayer(pName, pStats, 100, 300);
+
     //Enemy Variables:
     static int [] eStats = {20, 10, 4, 1, 2, 3, 1};
     GUIEnemy e1 = new GUIEnemy("Enemy", eStats, 100, 100, 50, 50);
@@ -112,6 +117,7 @@ public class GUIMain implements KeyListener
         g.drawString("* This is a test message.", 30, 40);
         g.drawString("*This is a test message too.", 30, 60);
 
+        p1.drawPlayer(g, p1.name, p1.x, p1.y);
         e1.drawEnemy(g, e1.x, e1.y, e1.sizeX, e1.sizeY);
     }
 
